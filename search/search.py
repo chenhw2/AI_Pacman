@@ -88,15 +88,14 @@ def depthFirstSearch(problem):
     """
     "*** YOUR CODE HERE ***"
     stack = util.Stack()
-    stack.push((problem.getStartState(), [], []))
+    stack.push((problem.getStartState(), [], set()))
     while not stack.isEmpty():
         node, actions, visited = stack.pop()
+        if node in visited: continue
+        if problem.isGoalState(node): return actions
+        visited.add(node)
         for coord, direction, _ in problem.getSuccessors(node):
-            if not coord in visited:
-                nextActions = actions + [direction]
-                if not problem.isGoalState(coord):
-                    stack.push((coord, nextActions, visited + [node]))
-                else: return nextActions
+            stack.push((coord, actions + [direction], visited))
     return []
     # util.raiseNotDefined()
 
