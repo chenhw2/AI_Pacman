@@ -110,7 +110,8 @@ def breadthFirstSearch(problem):
         if problem.isGoalState(node): return actions
         visited.add(node)
         for coord, direction, _ in problem.getSuccessors(node):
-            queue.push((coord, actions + [direction], visited))
+            nextActions = actions + [direction]
+            queue.push((coord, nextActions, visited))
     return []
     # util.raiseNotDefined()
 
