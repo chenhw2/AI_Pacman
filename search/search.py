@@ -102,17 +102,16 @@ def depthFirstSearch(problem):
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    visited = []
     priorityQueue = util.PriorityQueue()
-    priorityQueue.push((problem.getStartState(), []), 0)
+    priorityQueue.push((problem.getStartState(), [], set()), 0)
     while not priorityQueue.isEmpty():
-        node, actions = priorityQueue.pop()
+        node, actions, visited = priorityQueue.pop()
+        if node in visited: continue
         if problem.isGoalState(node): return actions
-        visited.append(node)
+        visited.add(node)
         for coord, direction, _ in problem.getSuccessors(node):
-            if not coord in visited:
-                nextActions = actions + [direction]
-                priorityQueue.push((coord, nextActions), problem.getCostOfActions(nextActions))
+            nextActions = actions + [direction]
+            priorityQueue.push((coord, nextActions, visited), problem.getCostOfActions(nextActions))
     return []
     # util.raiseNotDefined()
 
