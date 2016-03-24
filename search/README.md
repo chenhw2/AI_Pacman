@@ -6,9 +6,10 @@ python pacman.py --layout tinyMaze --pacman GoWestAgent
 #### Finding a Fixed Food Dot using Depth First Search / Breadth First Search
 ```
 python pacman.py -l tinyMaze -p SearchAgent -a fn=tinyMazeSearch
-python pacman.py -l tinyMaze -p SearchAgent -z.3
+python pacman.py -l tinyMaze -p SearchAgent -z.3 --frameTime=0.03
 # -l {tinyMaze | mediumMaze | bigMaze}
-# -a fn={bfs | dfs}
+# -a fn={bfs | dfs | ucs | astar}
+python autograder.py
 ```
 ### DFS
 > 深度优先遍历(DFS)
