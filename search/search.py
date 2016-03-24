@@ -128,7 +128,7 @@ def uniformCostSearch(problem):
             n_actions = actions + [direction]
             priorityQueue.push((coord, n_actions, visited), problem.getCostOfActions(n_actions))
     return []
-    util.raiseNotDefined()
+    # util.raiseNotDefined()
 
 def nullHeuristic(state, problem=None):
     """
@@ -140,7 +140,19 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    priorityQueue = util.PriorityQueue()
+    priorityQueue.push((problem.getStartState(), [], set()), 0)
+    while not priorityQueue.isEmpty():
+        node, actions, visited = priorityQueue.pop()
+        if node in visited: continue
+        if problem.isGoalState(node): return actions
+        visited.add(node)
+        for coord, direction, _ in problem.getSuccessors(node):
+            n_actions = actions + [direction]
+            cost = problem.getCostOfActions(n_actions) + heuristic(coord, problem)
+            priorityQueue.push((coord, n_actions, visited), cost)
+    return []
+    # util.raiseNotDefined()
 
 
 # Abbreviations
