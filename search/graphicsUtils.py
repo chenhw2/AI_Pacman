@@ -4,7 +4,7 @@
 # educational purposes provided that (1) you do not distribute or publish
 # solutions, (2) you retain this notice, and (3) you provide clear
 # attribution to UC Berkeley, including a link to http://ai.berkeley.edu.
-# 
+#
 # Attribution Information: The Pacman AI projects were developed at UC Berkeley.
 # The core projects and autograders were primarily created by John DeNero
 # (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
@@ -214,7 +214,7 @@ def moveCircle(id, pos, r, endpoints=None):
         e = list(endpoints)
     while e[0] > e[1]: e[1] = e[1] + 360
 
-    edit(id, ('start', e[0]), ('extent', e[1] - e[0]))
+    # edit(id, ('start', e[0]), ('extent', e[1] - e[0]))
     move_to(id, x0, y0)
 
 def edit(id, *args):
