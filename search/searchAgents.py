@@ -379,7 +379,7 @@ def cornersHeuristic(state, problem):
     "*** YOUR CODE HERE ***"
     hVal = 0
     node, visited = state[0], state[1]
-    unvisited = set(corners) ^ set(visited)
+    unvisited = set(corners) - set(visited)
     while len(unvisited):
         dst, node = min([(util.manhattanDistance(node, c), c) for c in unvisited])
         hVal += dst
@@ -509,11 +509,17 @@ class ClosestDotSearchAgent(SearchAgent):
         # Here are some useful elements of the startState
         startPosition = gameState.getPacmanPosition()
         food = gameState.getFood()
-        walls = gameState.getWalls()
-        problem = AnyFoodSearchProblem(gameState)
+        # walls = gameState.getWalls()
+        # problem = AnyFoodSearchProblem(gameState)
 
         "*** YOUR CODE HERE ***"
-        return self.searchFunction(problem)
+        dist = list()
+        for i, row in enumerate(food):
+            for j, isFood in enumerate(row):
+                if isFood: dist.append([mazeDistance(startPosition, (i,j), gameState), (i,j)])
+        _, closestDot = min(dist)
+        nPro = PositionSearchProblem(gameState, start=startPosition, goal=closestDot, warn=False, visualize=False)
+        return search.bfs(nPro)
         # util.raiseNotDefined()
 
 class AnyFoodSearchProblem(PositionSearchProblem):
