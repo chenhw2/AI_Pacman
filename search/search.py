@@ -88,12 +88,12 @@ def depthFirstSearch(problem):
     """
     "*** YOUR CODE HERE ***"
     stack = util.Stack()
-    stack.push((problem.getStartState(), [], set()))
+    stack.push((problem.getStartState(), [], list()))
     while not stack.isEmpty():
         node, actions, visited = stack.pop()
         if node in visited: continue
         if problem.isGoalState(node): return actions
-        visited.add(node)
+        visited.append(node)
         for coord, direction, _ in problem.getSuccessors(node):
             stack.push((coord, actions + [direction], visited))
     return []
@@ -103,12 +103,12 @@ def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
     queue = util.Queue()
-    queue.push((problem.getStartState(), [], set()))
+    queue.push((problem.getStartState(), [], list()))
     while not queue.isEmpty():
         node, actions, visited = queue.pop()
         if node in visited: continue
         if problem.isGoalState(node): return actions
-        visited.add(node)
+        visited.append(node)
         for coord, direction, _ in problem.getSuccessors(node):
             queue.push((coord, actions + [direction], visited))
     return []
@@ -118,12 +118,12 @@ def uniformCostSearch(problem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
     priorityQueue = util.PriorityQueue()
-    priorityQueue.push((problem.getStartState(), [], set()), 0)
+    priorityQueue.push((problem.getStartState(), [], list()), 0)
     while not priorityQueue.isEmpty():
         node, actions, visited = priorityQueue.pop()
         if node in visited: continue
         if problem.isGoalState(node): return actions
-        visited.add(node)
+        visited.append(node)
         for coord, direction, _ in problem.getSuccessors(node):
             n_actions = actions + [direction]
             priorityQueue.push((coord, n_actions, visited), problem.getCostOfActions(n_actions))
@@ -141,12 +141,12 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
     priorityQueue = util.PriorityQueue()
-    priorityQueue.push((problem.getStartState(), [], set()), 0)
+    priorityQueue.push((problem.getStartState(), [], list()), 0)
     while not priorityQueue.isEmpty():
         node, actions, visited = priorityQueue.pop()
         if node in visited: continue
         if problem.isGoalState(node): return actions
-        visited.add(node)
+        visited.append(node)
         for coord, direction, _ in problem.getSuccessors(node):
             n_actions = actions + [direction]
             cost = problem.getCostOfActions(n_actions) + heuristic(coord, problem)
