@@ -35,3 +35,21 @@ python autograder.py
 > UCS的改良算法 加上了估价函数，保证找到最短路径（最优解的）条件，关键在于估价函数h(n)的选取
 
 ## UCS 和 A* 都是队列，入队列，出队列，不同之处在于出队列的权重顺序
+
+
+
+
+> Finished at 21:15:28
+
+> Provisional grades
+> ==================
+> Question q1: 3/3
+> Question q2: 3/3
+> Question q3: 3/3
+> Question q4: 3/3
+> Question q5: 3/3
+> Question q6: 3/3
+> Question q7: 5/4
+> Question q8: 3/3
+> ------------------
+> Total: 26/25
